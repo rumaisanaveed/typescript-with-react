@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Button from "./Button";
+import SuperButton from "./Button";
 
 export default function Home() {
-  const [count, setCount] = useState<number>(0);
+  // const [count, setCount] = useState<number>(0);
   return (
     <div className="flex items-center justify-center min-h-screen">
       {/* <Button
@@ -19,7 +20,8 @@ export default function Home() {
       {/* <Button>
         <div>Hello</div>
       </Button> */}
-      <Button setCount={setCount} />
+      {/* <Button /> */}
+      <SuperButton type="submit" color="blue" size="lg" />
     </div>
   );
 }

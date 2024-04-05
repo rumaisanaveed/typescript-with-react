@@ -15,6 +15,8 @@
 //   );
 // }
 
+import { ComponentProps } from "react";
+
 // type Color = "red" | "blue" | "green";
 
 // type ButtonProps = {
@@ -66,14 +68,39 @@
 //   return <button>Click me</button>;
 // }
 
+// type ButtonProps = {
+//   // accepts everything
+//   //   children: React.ReactNode;
+//   // if we only want to allow jsx elements, we can't pass text here now
+//   //   children: JSX.Element;
+//   // setCount: React.Dispatch<React.SetStateAction<number>>;
+//   autoFocus? : boolean,
+//   type : "submit" | "reset" | "button"
+// };
+
+// we can use react component props type to get all the attributes which an html element can have
+// type ButtonProps = ComponentProps<"button"> & {
+//   variant?: "primary" | "secondary";
+// };
+
+// intersection
+
 type ButtonProps = {
-  // accepts everything
-  //   children: React.ReactNode;
-  // if we only want to allow jsx elements, we can't pass text here now
-  //   children: JSX.Element;
-  setCount: React.Dispatch<React.SetStateAction<number>>;
+  type: "button" | "submit" | "reset";
+  color: "red" | "blue" | "green";
 };
 
-export default function Button({ setCount }: ButtonProps) {
-  return <button onClick={() => setCount(2)}>Click Me</button>;
+type SuperButtonProps = ButtonProps & {
+  size: "lg" | "md";
+};
+
+// rest with wrap everything in an array
+// export default function Button({}: ButtonProps) {
+//   return <button>Click Me</button>;
+// }
+
+export default function SuperButton({}: SuperButtonProps) {
+  return <button>Click me</button>;
 }
+
+// typing event handler functions

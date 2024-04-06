@@ -1,3 +1,5 @@
+import { type Colors } from "./lib/types";
+
 // export default function Button({
 //   backgroundColor,
 // }: {
@@ -15,7 +17,7 @@
 //   );
 // }
 
-import { ComponentProps } from "react";
+import { ComponentProps, useEffect, useRef, useState } from "react";
 
 // type Color = "red" | "blue" | "green";
 
@@ -85,22 +87,77 @@ import { ComponentProps } from "react";
 
 // intersection
 
-type ButtonProps = {
-  type: "button" | "submit" | "reset";
-  color: "red" | "blue" | "green";
-};
+// type ButtonProps = {
+//   type: "button" | "submit" | "reset";
+//   color: "red" | "blue" | "green";
+// };
 
-type SuperButtonProps = ButtonProps & {
-  size: "lg" | "md";
-};
+// type SuperButtonProps = ButtonProps & {
+//   size: "lg" | "md";
+// };
 
 // rest with wrap everything in an array
 // export default function Button({}: ButtonProps) {
 //   return <button>Click Me</button>;
 // }
 
-export default function SuperButton({}: SuperButtonProps) {
-  return <button>Click me</button>;
-}
+// export default function SuperButton({}: SuperButtonProps) {
+//   return <button>Click me</button>;
+// }
 
 // typing event handler functions
+
+type User = {
+  name: string;
+  age: number;
+};
+
+// only age will be included in this type
+type Guest = Omit<User, "name">;
+
+type ButtonColor = "red" | "blue" | "green";
+
+type ButtonProps<T> = {
+  countValue: T;
+  countHistory: T[];
+  color: Colors;
+};
+
+export default function Button<T>({
+  countValue,
+  countHistory,
+}: ButtonProps<T>) {
+  // const [user, setUser] = useState<User | null>(null);
+  // const ref = useRef<HTMLButtonElement>(null);
+
+  // getting an item from local storage
+  useEffect(() => {
+    const previousBtnColor = localStorage.getItem("buttonColor") as ButtonColor;
+    console.log(previousBtnColor);
+  });
+
+  // we're saying that this function will return the array of that value which it will take as input
+  const convertToArray = <T,>(value: T): T[] => {
+    return [value];
+  };
+
+  convertToArray(5);
+  convertToArray("Rumaisa");
+
+  // const name = user?.name;
+
+  // const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  //   console.log("Button clicked");
+  // };
+  // we can't add anything and the array members will be constant and the array will be read only
+  // const buttonTextOptions = ["Click me", "Click me", "Click me"] as const;
+
+  return (
+    // <button>
+    //   {buttonTextOptions.map((option) => {
+    //     return option;
+    //   })}
+    // </button>
+    <button></button>
+  );
+}

@@ -21,7 +21,7 @@ export default function Home() {
         <div>Hello</div>
       </Button> */}
       {/* <Button /> */}
-      <SuperButton type="submit" color="blue" size="lg" />
+      {/* <SuperButton type="submit" color="blue" size="lg" /> */}
     </div>
   );
 }
